@@ -1,8 +1,7 @@
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import router from "@/router";
 import axios from "axios";
-import moment from "moment";
 
 const desserts = ref([]);
 onMounted(() => {
@@ -72,14 +71,12 @@ const getData = async () => {
         <v-row>
           <v-col v-for="item in desserts" :key="item.id" cols="4">
             <div @click="router.push('/hotels/' + item.id)" class="hover-scale">
-              <a href="">
-                <img
-                  class="css-img"
-                  style="width: 100%; height: 340px"
-                  :src="`${item.image}`"
-                  alt=""
-                />
-              </a>
+              <img
+                class="css-img"
+                style="width: 100%; height: 340px"
+                :src="`${item.image?.split(',')?.[0]}`"
+                alt=""
+              />
               <h1 class="hotel-h1 ml-3">{{ item.hotelName }}</h1>
               <span class="ml-3">{{ item.description }}</span>
             </div>
@@ -100,6 +97,7 @@ const getData = async () => {
 .hover-scale:hover {
   box-sizing: border-box;
   border: 1px solid #c8c4c4;
+  cursor: pointer;
 }
 .hover-scale:hover img {
   transform: rotate(0deg), scale(1.1);

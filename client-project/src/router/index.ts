@@ -35,22 +35,23 @@ const router = createRouter({
           path: "contact",
           component: () => import("@/views/ui-views/ContactPage.vue"),
         },
-        {
-          name: "login",
-          path: "login",
-          component: () => import("@/views/ui-views/Accouts/LoginPage.vue"),
-        },
-        {
-          name: "Register",
-          path: "register",
-          component: () => import("@/views/ui-views/Accouts/RegisterPage.vue"),
-        },
+
         {
           path: "hotels/:id",
           name: "Room",
           component: () => import("@/views/Hotel/HotelIndex.vue"),
         },
       ],
+    },
+    {
+      name: "login",
+      path: "/login",
+      component: () => import("@/views/ui-views/Accouts/LoginPage.vue"),
+    },
+    {
+      name: "Register",
+      path: "/register",
+      component: () => import("@/views/ui-views/Accouts/RegisterPage.vue"),
     },
     // {
     //   name: "Login",

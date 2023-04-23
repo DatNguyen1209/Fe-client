@@ -2,10 +2,12 @@
 import { ref } from "vue";
 import LogInOutItem from "./LogInOutItem";
 const navItem = ref(LogInOutItem);
+
+const username = localStorage.getItem("username");
 </script>
 <template>
   <div class="d-flex justify-center float-right">
-    <v-list class="pl-16 ml-16 d-flex justify-center">
+    <v-list class="pl-16 ml-16 d-flex justify-center" v-if="!username">
       <template v-for="(item, i) in navItem" :key="i">
         <v-list-item :to="item.to" rounded="lg" class="mb-1 mr-2">
           <v-list-item-avatar start class="v-list-item-avatar--start">
@@ -14,6 +16,7 @@ const navItem = ref(LogInOutItem);
         </v-list-item>
       </template>
     </v-list>
+    <div v-else>Xin chao {{ username }}</div>
   </div>
 </template>
 <style>

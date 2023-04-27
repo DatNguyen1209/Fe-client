@@ -5,6 +5,7 @@ import { useRoute } from "vue-router";
 
 const desserts = ref([]);
 const route = useRoute();
+const getDataRoom = ref();
 
 const images = [
   "https://sdl.xtel.vn/file/v1/download/hotel-product-cover-img/SDL_BKAV_1624326698771.jpg",
@@ -31,10 +32,15 @@ const getData = async () => {
     const res = await axios.get(
       "http://localhost:8080/api/v1/hotel/getbyid/" + route.params.id
     );
+    console.log(route.params.id);
     desserts.value = res.data;
   } catch (e) {
     console.error(e);
   }
+};
+const getRoom = (data) => {
+  console.log(data);
+  getDataRoom.value = data.rooms;
 };
 </script>
 <template>
@@ -49,10 +55,10 @@ const getData = async () => {
         </v-col>
 
         <!-- day la anh anh Minh lam -->
-        <div class="img__grid">
+        <div class="img__grid h-50">
           <div
             class="overview-img__grid-item"
-            v-for="(img, index) in images"
+            v-for="(img, index) in desserts.image?.split(',')"
             :key="index"
           >
             <img
@@ -130,7 +136,11 @@ const getData = async () => {
             </div>
           </div>
           <div>
-            <v-btn to="/order">Book now</v-btn>
+            <v-btn
+              @click="getRoom(item)"
+              :to="`/hotels/${route.params.id}/${item.id}`"
+              >Book now</v-btn
+            >
           </div>
         </v-col>
       </v-row>

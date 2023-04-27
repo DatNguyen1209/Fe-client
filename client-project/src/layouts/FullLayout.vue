@@ -2,7 +2,7 @@
   <v-card>
     <v-layout>
       <!-- <v-container> -->
-      <v-app-bar class="d-flex justify-center" :elevation="0">
+      <v-app-bar class="d-flex justify-space-between" :elevation="0">
         <div class="pa-16 ma-16">
           <RouterLink to="/">
             <img src="../assets/images/logos/logo-dark.svg" />

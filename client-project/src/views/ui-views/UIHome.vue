@@ -69,18 +69,23 @@ const getData = async () => {
     <v-item-group style="margin: 0 auto" mandatory>
       <v-container>
         <v-row>
-          <v-col v-for="item in desserts" :key="item.id" cols="4">
-            <div @click="router.push('/hotels/' + item.id)" class="hover-scale">
-              <img
-                class="css-img"
-                style="width: 100%; height: 340px"
-                :src="`${item.image?.split(',')?.[0]}`"
-                alt=""
-              />
-              <h1 class="hotel-h1 ml-3">{{ item.hotelName }}</h1>
-              <span class="ml-3">{{ item.description }}</span>
-            </div>
-          </v-col>
+          <template v-for="(item, index) in desserts" :key="item.id">
+            <v-col v-if="index < 6" cols="4">
+              <div
+                @click="router.push('/hotels/' + item.id)"
+                class="hover-scale"
+              >
+                <img
+                  class="css-img"
+                  style="width: 100%; height: 340px"
+                  :src="`${item.image?.split(',')?.[0]}`"
+                  alt=""
+                />
+                <h1 class="hotel-h1 ml-3">{{ item.hotelName }}</h1>
+                <span class="ml-3">{{ item.description }}</span>
+              </div>
+            </v-col>
+          </template>
         </v-row>
       </v-container>
     </v-item-group>

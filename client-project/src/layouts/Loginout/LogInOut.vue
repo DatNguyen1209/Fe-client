@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import LogInOutItem from "./LogInOutItem";
+import { useRouter } from "vue-router";
 const navItem = ref(LogInOutItem);
-
+const router = useRouter();
 const username = localStorage.getItem("username");
+const logOut = () => {
+  router.push("/login");
+  window.localStorage.removeItem("username");
+  window.localStorage.removeItem("token");
+};
 </script>
 <template>
   <div class="d-flex justify-center float-right">
@@ -16,7 +22,27 @@ const username = localStorage.getItem("username");
         </v-list-item>
       </template>
     </v-list>
-    <div v-else>Xin chao {{ username }}</div>
+    <div class="float-right mr-4" v-else @submit.prevent="logOut">
+      <v-menu open-on-hover>
+        <template v-slot:activator="{ props }">
+          <v-btn color="black" v-bind="props">Accout Info </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <v-btn>{{ username }}</v-btn>
+          </v-list-item>
+          <v-list-item>
+            <v-btn class="w-100">Order</v-btn>
+          </v-list-item>
+          <v-list-item>
+            <v-btn @click="logOut" type="submit" color="secondary" block
+              >LogOut</v-btn
+            >
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
   </div>
 </template>
 <style>

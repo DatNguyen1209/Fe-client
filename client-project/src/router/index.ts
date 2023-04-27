@@ -37,7 +37,7 @@ const router = createRouter({
         },
         {
           name: "Order",
-          path: "order",
+          path: "hotels/:id/:roomId",
           component: () => import("@/views/Order/OrderIndex.vue"),
         },
 
@@ -45,6 +45,7 @@ const router = createRouter({
           path: "hotels/:id",
           name: "Room",
           component: () => import("@/views/Hotel/HotelIndex.vue"),
+          children: [],
         },
       ],
     },

@@ -5,7 +5,6 @@ import { useRoute } from "vue-router";
 
 const desserts = ref([]);
 const route = useRoute();
-const getDataRoom = ref();
 
 const images = [
   "https://sdl.xtel.vn/file/v1/download/hotel-product-cover-img/SDL_BKAV_1624326698771.jpg",
@@ -37,10 +36,6 @@ const getData = async () => {
   } catch (e) {
     console.error(e);
   }
-};
-const getRoom = (data) => {
-  console.log(data);
-  getDataRoom.value = data.rooms;
 };
 </script>
 <template>
@@ -136,9 +131,7 @@ const getRoom = (data) => {
             </div>
           </div>
           <div>
-            <v-btn
-              @click="getRoom(item)"
-              :to="`/hotels/${route.params.id}/${item.id}`"
+            <v-btn :to="`/hotels/${route.params.id}/${item.id}`"
               >Book now</v-btn
             >
           </div>

@@ -9,7 +9,7 @@ const props = defineProps({
   data: Object,
 });
 const route = useRoute();
-
+const username = localStorage.getItem("username");
 const desserts = ref([]);
 const hotelName = ref("");
 const hotelType = ref("");
@@ -22,6 +22,7 @@ const price = ref("");
 const rated = ref();
 const description = ref("");
 const picked = ref(new Date());
+const picked_end = ref(new Date());
 
 const listData = ref([]);
 const roomData = ref([]);
@@ -68,12 +69,46 @@ const getDataRoom = async () => {
               alt=""
             />
             <div class="bg-white pa-3">
-              {{ roomData }}
-              <h3>HotelName</h3>
-              <span>roomName </span> <br />
-              <span>bedType</span> <br />
-              <span>capacity</span> <br />
-              <span>price</span>
+              <h2>{{ listData.hotelName }}</h2>
+              <v-row>
+                <v-col cols="4">Room name: </v-col>
+                <v-col cols="8"
+                  ><span class="float-right"
+                    >{{ roomData.roomName }}
+                  </span></v-col
+                >
+              </v-row>
+              <v-row>
+                <v-col cols="4">Bed type: </v-col>
+                <v-col cols="8"
+                  ><span class="float-right"
+                    >{{ roomData.bedType }}
+                  </span></v-col
+                >
+              </v-row>
+              <v-row>
+                <v-col cols="4">Capacity: </v-col>
+                <v-col cols="8"
+                  ><span class="float-right"
+                    >{{ roomData.capacity }}
+                  </span></v-col
+                >
+              </v-row>
+              <v-row>
+                <v-col cols="4">Price: </v-col>
+                <v-col cols="8">
+                  <div>
+                    <h3 class="text-color float-right text-h5">
+                      {{ roomData.price }}
+                      <span
+                        class="float-right text-blue-darken-1 text-subtitle-1"
+                      >
+                        VNĐ / night</span
+                      >
+                    </h3>
+                  </div>
+                </v-col>
+              </v-row>
             </div>
           </div>
         </v-col>
@@ -84,30 +119,85 @@ const getDataRoom = async () => {
               <span>Time of booking</span>
               <v-row class="d-flex justify-space-between">
                 <v-col cols="6">
-                  <!-- icon="mdi-calendar" -->
-                  <!-- class="d-picked" -->
-                  <!-- <Datepicker :min-date="new Date()" v-model="picked" /> -->
-
                   <VueDatePicker
                     :min-date="new Date()"
                     v-model="picked"
                     class="d-picked"
                     :enable-time-picker="false"
                   ></VueDatePicker>
-                  <!-- upperLimit -->
                 </v-col>
-                <!-- <v-col cols="6">
-                  -->
-                <!-- upperLimit -->
-                <!-- </v-col> -->
+                <v-col cols="6">
+                  <VueDatePicker
+                    :min-date="new Date()"
+                    v-model="picked_end"
+                    class="d-picked"
+                    placeholder="Select Date"
+                    :enable-time-picker="false"
+                  ></VueDatePicker>
+                </v-col>
               </v-row>
             </div>
           </div>
           <div class="bg-white pa-5 mt-2">
             <h3>Contact Information</h3>
             <div>
-              <span>Contact name</span>
-              <input type="text" placeholder="Username" />
+              <span>Contact name:</span>
+              <v-row>
+                <v-col cols="12">
+                  <input
+                    class="input-text"
+                    type="text"
+                    placeholder="Input your full name as show your ID / Passport"
+                    v-model="fullName"
+                  />
+                </v-col>
+              </v-row>
+            </div>
+            <div>
+              <v-row>
+                <v-col cols="6">
+                  <span> Username: </span>
+                  <v-row>
+                    <v-col cols="12">
+                      <input
+                        class="input-text"
+                        type="text"
+                        v-model="username"
+                        placeholder="Username"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col cols="6">
+                  <span> Phone number: </span>
+                  <v-row>
+                    <v-col cols="12">
+                      <input
+                        class="input-text"
+                        type="text"
+                        v-model="listData.phone"
+                        placeholder="Username"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </div>
+            <div>
+              <span>Email:</span>
+              <v-row>
+                <v-col cols="12">
+                  <input
+                    class="input-text"
+                    type="text"
+                    v-model="username"
+                    placeholder="Username"
+                  />
+                </v-col>
+              </v-row>
+            </div>
+            <div class="float-right mt-5">
+              <v-btn>Book now</v-btn>
             </div>
           </div>
         </v-col>
@@ -121,5 +211,16 @@ const getDataRoom = async () => {
   padding: 4px;
   color: #ee8a6a;
   outline: none;
+}
+.text-color {
+  color: rgb(73, 190, 110);
+}
+.input-text {
+  width: 100%;
+  /* outline: none; */
+  outline-color: #ee8a6a;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 </style>

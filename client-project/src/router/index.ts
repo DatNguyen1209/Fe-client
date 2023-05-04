@@ -40,10 +40,24 @@ const router = createRouter({
           path: "hotels/:id/:roomId",
           component: () => import("@/views/Order/OrderIndex.vue"),
         },
-
+        {
+          name: "Thanks",
+          path: "/thankspage",
+          component: () => import("@/views/Order/ThanksPage.vue"),
+        },
+        {
+          name: "OrderList",
+          path: "/orderlist",
+          component: () => import("@/views/Order/OrderList.vue"),
+        },
+        {
+          name: "OrderEdit",
+          path: "/orderedit",
+          component: () => import("@/views/Order/OrderEdit.vue"),
+        },
         {
           path: "hotels/:id",
-          name: "Room",
+          name: "Hotel",
           component: () => import("@/views/Hotel/HotelIndex.vue"),
           children: [],
         },

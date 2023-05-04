@@ -1,37 +1,51 @@
 <script setup>
-import { ref, onMounted, defineProps, watch } from "vue";
+import { ref, onMounted, defineProps, computed } from "vue";
 import axios from "axios";
 import Datepicker from "vue3-datepicker";
 import { useRoute } from "vue-router";
-
+import { useRouter } from "vue-router";
 const props = defineProps({
   isOpen: Boolean,
   data: Object,
 });
 const route = useRoute();
+const router = useRouter();
 const username = localStorage.getItem("username");
+const userid = localStorage.getItem("id");
 const desserts = ref([]);
+const fullName = ref("");
 const hotelName = ref("");
-const hotelType = ref("");
+const email = localStorage.getItem("email");
+const capacity = ref("");
+const roomId = ref();
+const roomName = ref("");
+const userId = ref();
+const hotelId = ref();
 const phone = ref("");
-const address = ref("");
 const images = ref("");
 const imgUrls = ref([]);
 const imgUrlsPreview = ref([]);
 const price = ref("");
-const rated = ref();
-const description = ref("");
 const picked = ref(new Date());
-const picked_end = ref(new Date());
+const picked_end = ref();
+const totalDay = ref();
+const totalMoney = ref();
 
 const listData = ref([]);
 const roomData = ref([]);
 
+// const countDay = () => {
+//   const timeDif = picked_end.value - picked.value;
+//   const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
+//   return dayDif;
+// };
+// computed(() => {
+//   countDay();
+// });
 onMounted(() => {
   getData();
   getDataRoom();
 });
-
 const getData = async () => {
   try {
     const res = await axios.get(
@@ -55,6 +69,31 @@ const getDataRoom = async () => {
     console.error(e);
   }
 };
+const orderRoom = async () => {
+  try {
+    const inserData = {
+      hotelName: hotelName.value,
+      userId: userid,
+      roomId: route.params.roomId,
+      hotelId: route.params.id,
+      roomName: roomName.value,
+      fullName: fullName.value,
+      email: email.value,
+      phone: phone.value,
+      capacity: capacity.value,
+      price: price.value,
+    };
+    const insert = await axios.post(
+      "http://localhost:8080/api/v1/order/create",
+      inserData
+    );
+    if (insert != null) {
+      router.push("/thankspage");
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
 </script>
 
 <template>
@@ -63,11 +102,7 @@ const getDataRoom = async () => {
       <v-row>
         <v-col cols="4">
           <div class="bg-white">
-            <img
-              class="w-100"
-              src="https://sdl.xtel.vn/file/v1/download/hotel-product-cover-img/SDL_BKAV_1620116502681.jfif"
-              alt=""
-            />
+            <img class="w-100" :src="`${roomData.image}`" alt="" />
             <div class="bg-white pa-3">
               <h2>{{ listData.hotelName }}</h2>
               <v-row>
@@ -190,14 +225,14 @@ const getDataRoom = async () => {
                   <input
                     class="input-text"
                     type="text"
-                    v-model="username"
-                    placeholder="Username"
+                    v-model="email"
+                    placeholder="Email"
                   />
                 </v-col>
               </v-row>
             </div>
             <div class="float-right mt-5">
-              <v-btn>Book now</v-btn>
+              <v-btn @click="orderRoom">Book now</v-btn>
             </div>
           </div>
         </v-col>

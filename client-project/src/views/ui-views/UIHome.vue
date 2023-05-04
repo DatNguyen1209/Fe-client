@@ -70,7 +70,7 @@ const getData = async () => {
       <v-container>
         <v-row>
           <template v-for="(item, index) in desserts" :key="item.id">
-            <v-col v-if="index < 6" cols="4">
+            <v-col class="" v-if="index < 6" cols="4">
               <div
                 @click="router.push('/hotels/' + item.id)"
                 class="hover-scale"
@@ -81,12 +81,23 @@ const getData = async () => {
                   :src="`${item.image?.split(',')?.[0]}`"
                   alt=""
                 />
-                <h1 class="hotel-h1 ml-3">{{ item.hotelName }}</h1>
-                <span class="ml-3">{{ item.description }}</span>
+                <h4 class="hotel-h1 text-h6 ml-3">{{ item.hotelName }}</h4>
+                <div class="text-right">
+                  <span class="text-right">từ </span>
+                  <span class="text-h6 text-teal-lighten-1"
+                    >{{ item.fromPrice }}
+                  </span>
+                  <span class="mr-3"> VNĐ</span>
+                </div>
               </div>
             </v-col>
           </template>
         </v-row>
+        <div class="text-center mt-16">
+          <button class="pa-3 bg-orange-lighten-2 text-white btn-see">
+            See more
+          </button>
+        </div>
       </v-container>
     </v-item-group>
   </div>
@@ -124,5 +135,13 @@ const getData = async () => {
   to {
     transform: scale(1.1);
   }
+}
+.text-right {
+  text-align: right;
+}
+.btn-see {
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 </style>

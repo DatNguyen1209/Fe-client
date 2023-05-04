@@ -58,7 +58,7 @@ const getData = async () => {
           >
             <img
               v-if="index < 6"
-              class="w-100 h-100"
+              class="w-100 h-100 img-fit"
               style="object-fit: cover"
               :src="img"
               alt=""
@@ -98,45 +98,49 @@ const getData = async () => {
         </v-row>
       </v-toolbar>
       <v-row class="bg-yellow-lighten-5 ma-0">
-        <v-col cols="3">
+        <v-col cols="6">
           <div class="float-left">
             <h2>General introduction</h2>
             <span>{{ desserts.description }}</span>
           </div>
         </v-col>
       </v-row>
-      <v-row
-        class="bg-blue-grey-lighten-5 ma-0 mt-6 mb-6"
-        v-for="item in desserts.rooms"
-        :key="item.id"
-      >
-        <v-col cols="3">
-          <img
-            style="width: 100%; height: auto"
-            :src="`${item.image}`"
-            alt=""
-          />
-        </v-col>
-        <v-col cols="9" class="col-10 pt-10 pb-10 d-flex justify-space-between">
-          <div>
-            <h3 class="pt-3 pb-3" style="color: #ee8a6a; font-size: 28px">
-              Bed type: {{ item.bedType }}
-            </h3>
-            <span>Capactity: {{ item.capacity }}m²</span>
+      <div v-for="item in desserts.rooms" :key="item.id">
+        <v-row
+          class="bg-blue-grey-lighten-5 ma-0 mt-6 mb-6"
+          v-if="item.status === true"
+        >
+          <v-col cols="3">
+            <img
+              style="width: 100%; height: auto"
+              :src="`${item.image}`"
+              alt=""
+            />
+          </v-col>
+          <v-col
+            cols="9"
+            class="col-10 pt-10 pb-10 d-flex justify-space-between"
+          >
             <div>
-              <span style="font-size: 28px; color: rgb(73 190 110)">{{
-                item.price
-              }}</span>
-              <span> VND/night</span>
+              <h3 class="pt-3 pb-3" style="color: #ee8a6a; font-size: 28px">
+                Bed type: {{ item.bedType }}
+              </h3>
+              <span>Capactity: {{ item.capacity }}m²</span>
+              <div>
+                <span style="font-size: 28px; color: rgb(73 190 110)">{{
+                  item.price
+                }}</span>
+                <span> VND/night</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <v-btn :to="`/hotels/${route.params.id}/${item.id}`"
-              >Book now</v-btn
-            >
-          </div>
-        </v-col>
-      </v-row>
+            <div>
+              <v-btn :to="`/hotels/${route.params.id}/${item.id}`"
+                >Book now</v-btn
+              >
+            </div>
+          </v-col>
+        </v-row>
+      </div>
     </v-container>
   </v-car>
 </template>
@@ -191,5 +195,8 @@ const getData = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.img-fit {
+  object-fit: cover !important;
 }
 </style>

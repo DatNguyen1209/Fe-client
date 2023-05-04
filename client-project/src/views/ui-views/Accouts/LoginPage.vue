@@ -19,8 +19,10 @@ const login = async () => {
     console.log(res.data);
     if (res != null) {
       router.push("/");
+      localStorage.setItem(`id`, res.data.id);
       localStorage.setItem(`token`, res.data.accessToken);
       localStorage.setItem(`username`, res.data.username);
+      localStorage.setItem(`email`, res.data.email);
     }
   } catch (error) {
     console.log(error);

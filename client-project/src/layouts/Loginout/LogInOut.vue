@@ -33,7 +33,7 @@ const logOut = () => {
             <v-btn>{{ username }}</v-btn>
           </v-list-item>
           <v-list-item>
-            <v-btn class="w-100">Order</v-btn>
+            <v-btn to="/orderlist" class="w-100">Order</v-btn>
           </v-list-item>
           <v-list-item>
             <v-btn @click="logOut" type="submit" color="secondary" block

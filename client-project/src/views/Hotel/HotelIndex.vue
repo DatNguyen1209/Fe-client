@@ -2,10 +2,26 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+// import required modules
+import { FreeMode, Navigation, Thumbs } from "swiper";
 
 const desserts = ref([]);
 const route = useRoute();
+const dialog = ref(false);
 
+// let thumbsSwiper = null;
+// const setThumbsSwiper = (swiper) => {
+//   thumbsSwiper = swiper;
+// };
 const images = [
   "https://sdl.xtel.vn/file/v1/download/hotel-product-cover-img/SDL_BKAV_1624326698771.jpg",
   "https://sdl.xtel.vn/file/v1/download/hotel-product-cover-img/SDL_BKAV_1624326699205.jpg",
@@ -55,6 +71,7 @@ const getData = async () => {
             class="overview-img__grid-item"
             v-for="(img, index) in desserts.image?.split(',')"
             :key="index"
+            @click="dialog = true"
           >
             <img
               v-if="index < 6"
@@ -140,6 +157,47 @@ const getData = async () => {
             </div>
           </v-col>
         </v-row>
+        <v-dialog v-model="dialog" class="w-75">
+          <v-card>
+            <swiper
+              :style="{
+                '--swiper-navigation-color': '#fff',
+                '--swiper-pagination-color': '#fff',
+              }"
+              :spaceBetween="10"
+              :navigation="true"
+              :thumbs="{ swiper: thumbsSwiper }"
+              :modules="modules"
+              class="mySwiper2"
+            >
+              <swiper-slide
+                v-for="(img, index) in desserts.image?.split(',')"
+                :key="index"
+                ><img :src="img"
+              /></swiper-slide>
+            </swiper>
+            <swiper
+              @swiper="setThumbsSwiper"
+              :spaceBetween="10"
+              :slidesPerView="4"
+              :freeMode="true"
+              :watchSlidesProgress="true"
+              :modules="modules"
+              class="mySwiper"
+            >
+              <swiper-slide
+                v-for="(img, index) in desserts.image?.split(',')"
+                :key="index"
+                ><img :src="img" />
+              </swiper-slide>
+            </swiper>
+            <v-card-actions>
+              <v-btn color="primary" block @click="dialog = false"
+                >Close Dialog</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </div>
     </v-container>
   </v-car>
@@ -198,5 +256,90 @@ const getData = async () => {
 }
 .img-fit {
   object-fit: cover !important;
+}
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body {
+  background: #000;
+  color: #000;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>

@@ -42,6 +42,11 @@ const roomData = ref([]);
 // computed(() => {
 //   countDay();
 // });
+const countDate = (date) => {
+  const time = date.getTimezoneOffset() * 60 * 1000;
+  return new Date(date - time).toISOString().split("T")[0];
+};
+
 onMounted(() => {
   getData();
   getDataRoom();
@@ -160,6 +165,7 @@ const orderRoom = async () => {
                     class="d-picked"
                     :enable-time-picker="false"
                   ></VueDatePicker>
+                  <span>{{ countDate(picked) }}</span>
                 </v-col>
                 <v-col cols="6">
                   <VueDatePicker

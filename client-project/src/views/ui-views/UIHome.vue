@@ -2,6 +2,10 @@
 import { onMounted, ref } from "vue";
 import router from "@/router";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
 
 const desserts = ref([]);
 onMounted(() => {
@@ -100,6 +104,64 @@ const getData = async () => {
         </div>
       </v-container>
     </v-item-group>
+    <swiper :watchSlidesProgress="true" :slidesPerView="3" class="mySwiper">
+      <swiper-slide>
+        <img
+          class="img-object"
+          src="https://preview.colorlib.com/theme/marian/assets/img/gallery/gallery2.jpg"
+          alt=""
+        />
+      </swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://preview.colorlib.com/theme/marian/assets/img/gallery/gallery1.jpg"
+          alt=""
+      /></swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://preview.colorlib.com/theme/marian/assets/img/gallery/gallery3.jpg"
+          alt=""
+      /></swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://q-xx.bstatic.com/xdata/images/hotel/840x460/431921434.jpg?k=675faabd40677f77b24e82ccdea85efcef7ce7b61d51fec37965738199243483&o="
+          alt=""
+        />
+      </swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://q-xx.bstatic.com/xdata/images/hotel/840x460/346698066.jpg?k=9ed06c2ecc1fd44d2fbc595acb1ff502f8b7cd8eda291fdcfc84b974b5557257&o="
+          alt=""
+      /></swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://pix8.agoda.net/hotelImages/31571574/-1/04228d5860d9c3314306b7e4cfa3a536.jpg?ce=0&s=1024x768"
+          alt=""
+      /></swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://pix8.agoda.net/hotelImages/36122972/-1/b4faeb206170d19d6db8770a52afeb65.jpg?ce=0&s=1024x768"
+          alt=""
+      /></swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://pix8.agoda.net/hotelImages/36122972/-1/59e1a5d258e08eb3e9233292a076107f.jpg?ce=0&s=1024x768"
+          alt=""
+      /></swiper-slide>
+      <swiper-slide
+        ><img
+          class="img-object"
+          src="https://pix8.agoda.net/hotelImages/36122972/0/3abbec0a54a2384d30e081ef8891e48c.jpg?ce=0&s=1024x768"
+          alt=""
+      /></swiper-slide>
+    </swiper>
   </div>
 </template>
 <style>
@@ -143,5 +205,37 @@ const getData = async () => {
   border-radius: 8px;
   text-transform: uppercase;
   font-weight: 800;
+}
+.swiper {
+  width: 100%;
+}
+.swiper-slide {
+  height: 300px;
+  background: #882525;
+  line-height: 300px;
+  text-align: center;
+}
+.swiper-slide:nth-child(2) {
+  background: #8acc7d;
+}
+.swiper-slide:nth-child(3) {
+  background: #b7cc7d;
+}
+.swiper-slide:nth-child(4) {
+  background: #9eb75c;
+}
+.swiper-slide:nth-child(5) {
+  background: #7da8cc;
+}
+.swiper-slide:nth-child(6) {
+  background: #96cc7d;
+}
+.swiper-slide:nth-child(7) {
+  background: #cc7dae;
+}
+.img-object {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
 }
 </style>

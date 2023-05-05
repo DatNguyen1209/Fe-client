@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, defineProps, computed } from "vue";
+import { ref, onMounted, defineProps, computed, watch } from "vue";
 import axios from "axios";
 import Datepicker from "vue3-datepicker";
 import { useRoute } from "vue-router";
@@ -22,30 +22,23 @@ const roomName = ref("");
 const userId = ref();
 const hotelId = ref();
 const phone = ref("");
+const image = ref("");
 const images = ref("");
 const imgUrls = ref([]);
 const imgUrlsPreview = ref([]);
-const price = ref("");
-const picked = ref(new Date());
+const price = ref();
+const dayRental = ref(new Date());
 const picked_end = ref();
-const totalDay = ref();
-const totalMoney = ref();
+const totalMoney = ref(0);
 
 const listData = ref([]);
 const roomData = ref([]);
 
-// const countDay = () => {
-//   const timeDif = picked_end.value - picked.value;
-//   const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
-//   return dayDif;
+// var datedif = picked_end.get().value - picked.get().value;
+// const countDate = (date) => {
+//   const time = date.getTimezoneOffset() * 60 * 1000;
+//   return new Date(date - time).toISOString().split("T")[0];
 // };
-// computed(() => {
-//   countDay();
-// });
-const countDate = (date) => {
-  const time = date.getTimezoneOffset() * 60 * 1000;
-  return new Date(date - time).toISOString().split("T")[0];
-};
 
 onMounted(() => {
   getData();
@@ -56,7 +49,6 @@ const getData = async () => {
     const res = await axios.get(
       "http://localhost:8080/api/v1/hotel/getbyid/" + route.params.id
     );
-    console.log(route.params.id);
     listData.value = res.data;
   } catch (e) {
     console.error(e);
@@ -68,7 +60,7 @@ const getDataRoom = async () => {
     const res = await axios.get(
       "http://localhost:8080/api/v1/room/getbyid/" + route.params.roomId
     );
-    console.log(route.params.id);
+    // console.log(typeof res.data.price);
     roomData.value = res.data;
   } catch (e) {
     console.error(e);
@@ -84,6 +76,10 @@ const orderRoom = async () => {
       roomName: roomName.value,
       fullName: fullName.value,
       email: email.value,
+      dayNum: datedif.value,
+      totalMoney: total.value,
+      image: roomData.value.image,
+      dayRental: dayRental.value,
       phone: phone.value,
       capacity: capacity.value,
       price: price.value,
@@ -99,6 +95,18 @@ const orderRoom = async () => {
     console.log(e);
   }
 };
+const datedif = computed({
+  get() {
+    return Math.round(
+      (picked_end.value - dayRental.value) / (60 * 60 * 1000 * 24)
+    );
+  },
+});
+const total = computed({
+  get() {
+    return Math.round(datedif.value * roomData.value.price);
+  },
+});
 </script>
 
 <template>
@@ -161,11 +169,10 @@ const orderRoom = async () => {
                 <v-col cols="6">
                   <VueDatePicker
                     :min-date="new Date()"
-                    v-model="picked"
+                    v-model="dayRental"
                     class="d-picked"
                     :enable-time-picker="false"
                   ></VueDatePicker>
-                  <span>{{ countDate(picked) }}</span>
                 </v-col>
                 <v-col cols="6">
                   <VueDatePicker
@@ -237,8 +244,15 @@ const orderRoom = async () => {
                 </v-col>
               </v-row>
             </div>
-            <div class="float-right mt-5">
-              <v-btn @click="orderRoom">Book now</v-btn>
+            <div class="float-right d-flex flex-column">
+              <div class="text-h6">
+                <span>Thanh toán: </span>
+                <span>{{ total }}</span>
+                <span> VNĐ</span>
+              </div>
+              <div class="mt-5">
+                <v-btn class="float-right" @click="orderRoom">Book now</v-btn>
+              </div>
             </div>
           </div>
         </v-col>

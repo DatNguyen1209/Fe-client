@@ -70,11 +70,7 @@ const openDelete = (data) => {
             <v-col cols="6">
               <v-row>
                 <v-col cols="3">
-                  <img
-                    class="w-100"
-                    src="https://sdl.xtel.vn/file/v1/download/hotel-product-cover-img/SDL_BKAV_1620116502681.jfif"
-                    alt=""
-                  />
+                  <img class="w-100" :src="`${item.image}`" alt="" />
                 </v-col>
                 <v-col cols="4">
                   <span>{{ item.roomName }}</span>

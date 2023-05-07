@@ -98,7 +98,10 @@ const getData = async () => {
           </template>
         </v-row>
         <div class="text-center mt-16">
-          <button class="pa-3 bg-orange-lighten-2 text-white btn-see">
+          <button
+            @click="router.push('/hotel')"
+            class="pa-3 bg-orange-lighten-2 text-white btn-see"
+          >
             See more
           </button>
         </div>

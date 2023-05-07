@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 
 const orderList = ref([]);
+const router = useRouter();
 const dialog = ref(false);
 onMounted(() => {
   getData();
@@ -86,15 +87,20 @@ const openDelete = (data) => {
                   <span class="color-pri mt-6">{{ item.price }} đ</span>
                 </v-col>
                 <v-col cols="3">
-                  <span>Day</span>
+                  <span>{{ item.dayNum }}</span>
                 </v-col>
                 <v-col cols="3">
-                  <span>Total Money</span>
+                  <span>{{ item.totalMoney }} VNĐ</span>
                 </v-col>
                 <v-col class="text-center" cols="3">
                   <v-row>
                     <v-col cols="12">
-                      <button class="text-underline">Sửa</button>
+                      <button
+                        @click="router.push('/order/' + item.id)"
+                        class="text-underline"
+                      >
+                        Sửa
+                      </button>
                     </v-col>
                     <v-col cols="12">
                       <button @click="openDelete(item)" class="text-underline">

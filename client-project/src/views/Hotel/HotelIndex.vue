@@ -80,9 +80,7 @@ const getData = async () => {
               :src="img"
               alt=""
             />
-            <span v-if="index === 5" class="overview-img__grid-num"
-              >+{{ images.length - 6 }}</span
-            >
+            <span v-if="index === 5" class="overview-img__grid-num">+</span>
           </div>
         </div>
       </v-row>
@@ -173,7 +171,7 @@ const getData = async () => {
               <swiper-slide
                 v-for="(img, index) in desserts.image?.split(',')"
                 :key="index"
-                ><img :src="img"
+                ><img style="width: 100%; height: 400px" :src="img"
               /></swiper-slide>
             </swiper>
             <swiper
@@ -188,7 +186,7 @@ const getData = async () => {
               <swiper-slide
                 v-for="(img, index) in desserts.image?.split(',')"
                 :key="index"
-                ><img :src="img" />
+                ><img style="width: 100%; height: 80px" :src="img" />
               </swiper-slide>
             </swiper>
             <v-card-actions>
@@ -305,7 +303,7 @@ body {
 
 .swiper {
   width: 100%;
-  height: 300px;
+  height: 800px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -316,12 +314,12 @@ body {
 }
 
 .mySwiper2 {
-  height: 80%;
+  height: 60%;
   width: 100%;
 }
 
 .mySwiper {
-  height: 20%;
+  height: 80%;
   box-sizing: border-box;
   padding: 10px 0;
 }

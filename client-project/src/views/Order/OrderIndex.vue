@@ -195,6 +195,7 @@ const total = computed({
                   <input
                     class="input-text"
                     type="text"
+                    required
                     placeholder="Input your full name as show your ID / Passport"
                     v-model="fullName"
                   />
@@ -210,6 +211,7 @@ const total = computed({
                       <input
                         class="input-text"
                         type="text"
+                        required
                         v-model="username"
                         placeholder="Username"
                       />
@@ -221,6 +223,7 @@ const total = computed({
                   <v-row>
                     <v-col cols="12">
                       <input
+                        required
                         class="input-text"
                         type="text"
                         v-model="listData.phone"

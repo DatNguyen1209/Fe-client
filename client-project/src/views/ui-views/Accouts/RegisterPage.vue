@@ -32,73 +32,84 @@ const register = async () => {
 </script>
 <template>
   <div class="bg-img">
-    <v-container class="container">
-      <div class="row justify-center">
-        <div class="col-md-6 col-lg-4">
-          <div class="login-wrap pa-0 mt-16">
-            <h2 class="mb-4 text-white mt-6 text-center">
-              Register account to booking?
-            </h2>
-            <div class="d-flex justify-center">
-              <v-form class="w-25 mt-16" @submit.prevent="register">
-                <div class="form-group mt-6">
-                  <input
-                    class="input-login pa-3 mb-4"
-                    type="text"
-                    v-model="username"
-                    placeholder="Username"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    class="mb-4 input-login pa-3"
-                    type="password"
-                    v-model="password"
-                    placeholder="Password"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    class="mb-4 input-login pa-3"
-                    v-model="fullName"
-                    placeholder="Full Name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    class="mb-4 input-login pa-3"
-                    type="email"
-                    v-model="email"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    class="mb-4 input-login pa-3"
-                    v-model="address"
-                    placeholder="Address"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    class="input-login pa-3"
-                    v-model="phone"
-                    placeholder="Phone number"
-                    required
-                  />
-                </div>
-                <div class="form-group w-100 mt-5">
-                  <v-btn type="submit" class="w-100 pa-2"> Register </v-btn>
-                </div>
-              </v-form>
-            </div>
-          </div>
-        </div>
+    <v-container class="form-posi h-100">
+      <div class="form-sign-up w-75 pa-5">
+        <h2 class="text-center heading-login py-4">
+          Đăng ký để sử dụng dịch vụ của chúng tôi
+        </h2>
+        <v-row>
+          <v-col cols="6">
+            <span>Tài khoản</span>
+            <input
+              class="w-100 input-login"
+              type="text"
+              v-model="username"
+              placeholder="Nhập tài khoản"
+            />
+          </v-col>
+          <v-col cols="6">
+            <span>Họ và tên</span>
+            <input
+              class="w-100 input-login"
+              type="text"
+              v-model="fullName"
+              placeholder="Họ và tên"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6">
+            <span>Mật khẩu</span>
+            <input
+              class="w-100 input-login"
+              type="password"
+              placeholder="Nhập mật khẩu"
+              name=""
+              v-model="password"
+              id=""
+            />
+          </v-col>
+          <v-col cols="6">
+            <span>Email</span>
+            <input
+              class="w-100 input-login"
+              placeholder="Nhập đúng định dạng email"
+              type="email"
+              v-model="email"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6">
+            <span>Số đt</span>
+            <input
+              class="w-100 input-login"
+              type="text"
+              placeholder="Nhập số điện thoại"
+              name=""
+              v-model="phone"
+              id=""
+            />
+          </v-col>
+          <v-col cols="6">
+            <span>Địa chỉ</span>
+            <input
+              class="w-100 input-login"
+              placeholder="Nhập địa chỉ"
+              type="email"
+              v-model="address"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <button @click="register" class="btn-rigis">Đăng ký</button>
+          </v-col>
+          <v-col cols="12" class="text-center">
+            <span> Bạn đã có tài khoản ? đăng nhập</span>
+            <a href="/login"> tại đây</a>
+          </v-col>
+        </v-row>
       </div>
     </v-container>
   </div>
@@ -113,10 +124,32 @@ const register = async () => {
   border-radius: 20px !important;
   outline: none;
   width: 100%;
-  color: white;
-  background-color: rgba(144, 126, 154, 0.4);
+  padding: 8px;
+  color: black;
+  background-color: #a3bee2;
 }
 ::placeholder {
   color: white;
+}
+.form-posi {
+  position: relative;
+}
+.form-sign-up {
+  background-color: white;
+  position: absolute;
+  top: 16%;
+  left: 10%;
+  border-radius: 14px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.heading-login {
+  line-height: 40px;
+  text-transform: uppercase;
+}
+.btn-rigis {
+  width: 100%;
+  padding: 8px;
+  background-color: aqua;
+  border-radius: 20px;
 }
 </style>

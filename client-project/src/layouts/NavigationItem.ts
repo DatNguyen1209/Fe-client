@@ -1,22 +1,18 @@
 export default [
   {
-    title: "Home",
+    title: "Trang chủ",
     to: "/home",
   },
   {
-    title: "Hotel",
+    title: "Khách sạn",
     to: "/hotel",
   },
   {
-    title: "About",
-    to: "/about",
-  },
-  {
-    title: "Blog",
+    title: "Bài viết",
     to: "/blog",
   },
   {
-    title: "Contact",
+    title: "Liên hệ",
     to: "/contact",
   },
 ];

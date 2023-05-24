@@ -30,7 +30,7 @@ const logOut = () => {
 
         <v-list>
           <v-list-item>
-            <v-btn>{{ username }}</v-btn>
+            <v-btn to="/accout">{{ username }}</v-btn>
           </v-list-item>
           <v-list-item>
             <v-btn to="/orderlist" class="w-100">Order</v-btn>

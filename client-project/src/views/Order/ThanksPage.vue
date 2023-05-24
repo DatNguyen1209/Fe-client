@@ -1,9 +1,4 @@
-<script setup>
-import axios from "axios";
-import { useRoute } from "vue-router";
-const route = useRoute();
-
-</script>
+<script setup></script>
 <template>
   <v-container>
     <v-row class="text-center mt-6 thanks-page">
@@ -40,7 +35,6 @@ const route = useRoute();
         </div>
       </div>
     </v-row>
-   
   </v-container>
 </template>
 <style>

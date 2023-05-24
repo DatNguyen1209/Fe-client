@@ -16,18 +16,9 @@
         <RouterView />
         <v-footer class="bg-black">
           <v-container>
-            <v-row>
-              <v-col cols="3">
+            <v-row class="d-flex align-center justify-center">
+              <v-col cols="3" class="text-center">
                 <img src="../assets/images/logos/logo-dark.svg" alt="" />
-              </v-col>
-              <v-col cols="3">
-                <h3>Qicks link</h3>
-              </v-col>
-              <v-col cols="3">
-                <h3>Reservations</h3>
-              </v-col>
-              <v-col cols="3">
-                <h3>Our location</h3>
               </v-col>
             </v-row>
           </v-container>

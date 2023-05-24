@@ -1,13 +1,10 @@
 <script setup>
-import { ref, onMounted, defineProps, computed, watch } from "vue";
+import { ref, onMounted, defineProps, computed } from "vue";
 import axios from "axios";
 import Datepicker from "vue3-datepicker";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
-const props = defineProps({
-  isOpen: Boolean,
-  data: Object,
-});
+
 const route = useRoute();
 const router = useRouter();
 const username = localStorage.getItem("username");
@@ -119,7 +116,7 @@ const total = computed({
             <div class="bg-white pa-3">
               <h2>{{ listData.hotelName }}</h2>
               <v-row>
-                <v-col cols="4">Room name: </v-col>
+                <v-col cols="4">Tên phòng: </v-col>
                 <v-col cols="8"
                   ><span class="float-right"
                     >{{ roomData.roomName }}
@@ -127,7 +124,7 @@ const total = computed({
                 >
               </v-row>
               <v-row>
-                <v-col cols="4">Bed type: </v-col>
+                <v-col cols="4">Loại phòng: </v-col>
                 <v-col cols="8"
                   ><span class="float-right"
                     >{{ roomData.bedType }}
@@ -135,7 +132,7 @@ const total = computed({
                 >
               </v-row>
               <v-row>
-                <v-col cols="4">Capacity: </v-col>
+                <v-col cols="4">Diện tích: </v-col>
                 <v-col cols="8"
                   ><span class="float-right"
                     >{{ roomData.capacity }}
@@ -143,7 +140,7 @@ const total = computed({
                 >
               </v-row>
               <v-row>
-                <v-col cols="4">Price: </v-col>
+                <v-col cols="4">Giá: </v-col>
                 <v-col cols="8">
                   <div>
                     <h3 class="text-color float-right text-h5">
@@ -151,7 +148,7 @@ const total = computed({
                       <span
                         class="float-right text-blue-darken-1 text-subtitle-1"
                       >
-                        VNĐ / night</span
+                        VNĐ / Đêm</span
                       >
                     </h3>
                   </div>
@@ -162,9 +159,9 @@ const total = computed({
         </v-col>
         <v-col cols="8">
           <div class="bg-white pa-5">
-            <h3>Booking Information</h3>
+            <h3>Thông tin đặt phòng</h3>
             <div>
-              <span>Time of booking</span>
+              <span>Ngày thuê</span>
               <v-row class="d-flex justify-space-between">
                 <v-col cols="6">
                   <VueDatePicker
@@ -187,9 +184,9 @@ const total = computed({
             </div>
           </div>
           <div class="bg-white pa-5 mt-2">
-            <h3>Contact Information</h3>
+            <h3>Thông tin người đặt</h3>
             <div>
-              <span>Contact name:</span>
+              <span>Họ tên:</span>
               <v-row>
                 <v-col cols="12">
                   <input
@@ -205,7 +202,7 @@ const total = computed({
             <div>
               <v-row>
                 <v-col cols="6">
-                  <span> Username: </span>
+                  <span> Tài khoản: </span>
                   <v-row>
                     <v-col cols="12">
                       <input
@@ -213,13 +210,13 @@ const total = computed({
                         type="text"
                         required
                         v-model="username"
-                        placeholder="Username"
+                        placeholder="Tài khoản"
                       />
                     </v-col>
                   </v-row>
                 </v-col>
                 <v-col cols="6">
-                  <span> Phone number: </span>
+                  <span> Số điện thoại: </span>
                   <v-row>
                     <v-col cols="12">
                       <input
@@ -227,7 +224,7 @@ const total = computed({
                         class="input-text"
                         type="text"
                         v-model="listData.phone"
-                        placeholder="Username"
+                        placeholder="Số điện thoại"
                       />
                     </v-col>
                   </v-row>

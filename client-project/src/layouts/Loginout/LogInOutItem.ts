@@ -1,10 +1,10 @@
 export default [
   {
-    title: "Login",
+    title: "Đăng nhập",
     to: "/login",
   },
   {
-    title: "Register",
+    title: "Đăng ký",
     to: "/register",
   },
 ];

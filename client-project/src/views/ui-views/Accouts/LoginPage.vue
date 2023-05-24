@@ -35,7 +35,7 @@ const login = async () => {
       <div class="row justify-center">
         <div class="col-md-6 col-lg-4">
           <div class="login-wrap pa-0 mt-16">
-            <h2 class="mb-4 text-white mt-6 text-center">Have an accout?</h2>
+            <h2 class="mb-4 text-white mt-6 text-center">Đăng nhập hệ thống</h2>
             <div class="d-flex justify-center">
               <v-form class="w-25 mt-16" @submit.prevent="login">
                 <div class="form-group mt-6">

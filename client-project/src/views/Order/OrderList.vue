@@ -1,12 +1,18 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
 const orderList = ref([]);
 const router = useRouter();
 const dialog = ref(false);
+const deleteData = ref([]);
+const deleteItem = ref(false);
+const checkItem = ref(true);
 onMounted(() => {
+  getData();
+});
+watch(orderList, () => {
   getData();
 });
 const userId = localStorage.getItem("id");
@@ -15,8 +21,36 @@ const getData = async () => {
     const res = await axios.get(
       "http://localhost:8080/api/v1/user/getUserById/" + userId
     );
-    console.log(res.data.orderHotelDetails);
     orderList.value = res.data.orderHotelDetails;
+  } catch (e) {
+    console.log(e);
+  }
+};
+const handleDelete = async (data) => {
+  try {
+    deleteData.value = data;
+    const detele = {
+      delete: deleteItem.value,
+    };
+    const success = await axios.put(
+      "http://localhost:8080/api/v1/order/delete/" + deleteData.value.id,
+      detele
+    );
+    dialog.value = false;
+  } catch (e) {
+    console.log(e);
+  }
+};
+const checkOrder = async (data) => {
+  try {
+    deleteData.value = data;
+    const check = {
+      status: checkItem.value,
+    };
+    const checkSuccess = await axios.put(
+      "http://localhost:8080/api/v1/order/check/" + deleteData.value.id,
+      check
+    );
   } catch (e) {
     console.log(e);
   }
@@ -53,16 +87,29 @@ const openDelete = (data) => {
         </v-row>
       </v-col>
     </v-row>
-    <div>
-      <v-row v-for="item in orderList" :key="item.id" class="mt-5 bg-white">
+    <div v-for="item in orderList" :key="item.id">
+      <v-row v-if="item.delete === true" class="mt-5 bg-white">
         <v-col cols="6">
           <button>
             <h3 class="pl-3 pr-3">{{ item.hotelName }}</h3>
           </button>
         </v-col>
-        <v-col class="text-center" cols="6">
-          <button class="btn-acction text-center float-right mr-10">
+        <v-col v-if="item.isConfirm === true" class="text-center" cols="6">
+          <button
+            @click="checkOrder(item)"
+            class="btn-acction text-center float-right mr-10"
+          >
             Trả phòng
+          </button>
+        </v-col>
+        <v-col v-if="item.isConfirm === null" class="text-center" cols="6">
+          <button class="btn-acction text-center float-right mr-10">
+            Đang chờ xử lý
+          </button>
+        </v-col>
+        <v-col v-if="item.isConfirm === false" class="text-center" cols="6">
+          <button class="btn-acction text-center float-right mr-10">
+            Đơn đặt bị từ chối
           </button>
         </v-col>
         <v-divider class="pr-3"></v-divider>
@@ -93,7 +140,7 @@ const openDelete = (data) => {
                   <span>{{ item.totalMoney }} VNĐ</span>
                 </v-col>
                 <v-col class="text-center" cols="3">
-                  <v-row>
+                  <v-row v-if="item.status === false">
                     <v-col cols="12">
                       <button
                         @click="router.push('/order/' + item.id)"
@@ -108,49 +155,50 @@ const openDelete = (data) => {
                       </button>
                     </v-col>
                   </v-row>
+                  <v-row v-else-if="item.status === true">
+                    <v-col cols="12">
+                      <button class="text-underline">Đã trả phòng</button>
+                    </v-col>
+                  </v-row>
                 </v-col>
               </v-row>
             </v-col>
           </v-row>
         </v-col>
       </v-row>
+      <template>
+        <v-row justify="space-around">
+          <v-dialog
+            v-model="dialog"
+            transition="dialog-top-transition"
+            persistent
+            width="auto"
+          >
+            <v-card>
+              <v-card-title class="text-h5"> Cảnh báo! </v-card-title>
+              <v-card-text>Bạn có chắc muốn hủy không?</v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="red-darken-1"
+                  variant="text"
+                  @click="dialog = false"
+                >
+                  Không
+                </v-btn>
+                <v-btn
+                  color="green-darken-1"
+                  variant="text"
+                  @click="handleDelete(item)"
+                >
+                  Đồng ý
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-row>
+      </template>
     </div>
-    <template>
-      <v-row justify="space-around">
-        <v-dialog
-          v-model="dialog"
-          transition="dialog-top-transition"
-          persistent
-          width="auto"
-        >
-          <v-card>
-            <v-card-title class="text-h5">
-              This action will be permanently deleted!
-            </v-card-title>
-            <v-card-text
-              >Are you sure you want to cancel your booking?</v-card-text
-            >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="red-darken-1"
-                variant="text"
-                @click="dialog = false"
-              >
-                Disagree
-              </v-btn>
-              <v-btn
-                color="green-darken-1"
-                variant="text"
-                @click="dialogDelete"
-              >
-                Agree
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row>
-    </template>
   </v-container>
 </template>
 <style>

@@ -120,6 +120,31 @@ const getData = async () => {
           </div>
         </v-col>
       </v-row>
+      <v-row class="bg-amber-lighten-5 ma-0 mt-4">
+        <v-col cols="12">
+          <div class="">
+            <h3>Tiện nghi</h3>
+            <v-row
+              class="w-100 d.flex justify-space-between align-center"
+              v-if="desserts.service"
+            >
+              <v-col
+                class="text-center md-4 lg-4 w-100"
+                cols="2"
+                v-for="item in desserts.service.split(',')"
+                :key="item"
+              >
+                <span class="item_service">{{ item }}</span>
+              </v-col>
+            </v-row>
+            <v-row v-else>
+              <v-col cols="12">
+                <span>Đang cập nhật</span>
+              </v-col>
+            </v-row>
+          </div>
+        </v-col>
+      </v-row>
       <div v-for="item in desserts.rooms" :key="item.id">
         <v-row
           class="bg-blue-grey-lighten-5 ma-0 mt-6 mb-6"
@@ -339,5 +364,15 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.item_service {
+  text-align: center;
+  width: 100%;
+  background-color: #fff;
+  padding: 8px;
+  border: 1px solid #b9f6ca;
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: 8px;
 }
 </style>

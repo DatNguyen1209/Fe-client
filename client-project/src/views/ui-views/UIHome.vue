@@ -68,7 +68,7 @@ const getData = async () => {
         color: #ee8a6a;
       "
     >
-      Our Hotel
+      Khách sạn của chúng tôi
     </h1>
     <v-item-group style="margin: 0 auto" mandatory>
       <v-container>

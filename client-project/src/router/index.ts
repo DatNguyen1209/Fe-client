@@ -56,6 +56,11 @@ const router = createRouter({
           component: () => import("@/views/Order/OrderList.vue"),
         },
         {
+          name: "Accout",
+          path: "/accout",
+          component: () => import("@/views/Accout/AccoutIndex.vue"),
+        },
+        {
           name: "OrderEdit",
           path: "/order/:id",
           component: () => import("@/views/Order/OrderEdit.vue"),
@@ -65,6 +70,11 @@ const router = createRouter({
           name: "Hotel",
           component: () => import("@/views/Hotel/HotelIndex.vue"),
           children: [],
+        },
+        {
+          path: "blog/:id",
+          name: "BlogDetail",
+          component: () => import("@/views/BLog/BlogDetail.vue"),
         },
       ],
     },

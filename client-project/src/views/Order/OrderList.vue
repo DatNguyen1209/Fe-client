@@ -61,6 +61,7 @@ const checkOrder = async (data) => {
 //   }
 // }
 const openDelete = (data) => {
+  console.log(data);
   dialog.value = true;
 };
 </script>

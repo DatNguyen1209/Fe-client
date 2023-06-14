@@ -244,15 +244,20 @@ const total = computed({
                 </v-col>
               </v-row>
             </div>
-            <div class="float-right d-flex flex-column">
+
+            <div v-if="username" class="float-right d-flex flex-column">
               <div class="text-h6">
                 <span>Thanh toán: </span>
-                <span>{{ total }}</span>
+                <span>{{ total === isNaN ? 0 : total }}</span>
                 <span> VNĐ</span>
               </div>
               <div class="mt-5">
                 <v-btn class="float-right" @click="orderRoom">Book now</v-btn>
               </div>
+            </div>
+            <div v-else class="float-right">
+              <span>Bạn cần đăng nhập để có thể đặt phòng </span>
+              <a href="/login">đăng nhập</a>
             </div>
           </div>
         </v-col>

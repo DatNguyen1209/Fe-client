@@ -80,4 +80,7 @@ const getDataFilter = computed(() => {
   background-color: #ee8a6a;
   border-radius: 10px;
 }
+::placeholder {
+  color: gray;
+}
 </style>

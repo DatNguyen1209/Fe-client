@@ -80,7 +80,9 @@ const getData = async () => {
               :src="img"
               alt=""
             />
-            <span v-if="index === 5" class="overview-img__grid-num">+</span>
+            <span v-if="index === 5" class="overview-img__grid-num"
+              >Xem thêm</span
+            >
           </div>
         </div>
       </v-row>
@@ -175,7 +177,7 @@ const getData = async () => {
             </div>
             <div>
               <v-btn :to="`/hotels/${route.params.id}/${item.id}`"
-                >Book now</v-btn
+                >Đặt phòng</v-btn
               >
             </div>
           </v-col>

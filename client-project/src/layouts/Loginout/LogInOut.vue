@@ -25,19 +25,19 @@ const logOut = () => {
     <div class="float-right mr-4" v-else @submit.prevent="logOut">
       <v-menu open-on-hover>
         <template v-slot:activator="{ props }">
-          <v-btn color="black" v-bind="props">Accout Info </v-btn>
+          <v-btn color="black" v-bind="props">Xin chào {{ username }} </v-btn>
         </template>
 
         <v-list>
           <v-list-item>
-            <v-btn to="/accout">{{ username }}</v-btn>
+            <v-btn class="w-100" to="/accout">{{ username }}</v-btn>
           </v-list-item>
           <v-list-item>
-            <v-btn to="/orderlist" class="w-100">Order</v-btn>
+            <v-btn to="/orderlist" class="w-100">Đơn đặt phòng</v-btn>
           </v-list-item>
           <v-list-item>
             <v-btn @click="logOut" type="submit" color="secondary" block
-              >LogOut</v-btn
+              >Đăng xuất</v-btn
             >
           </v-list-item>
         </v-list>

@@ -22,7 +22,7 @@ const getData = async () => {
   <v-container>
     <v-row class="mx-16 md-mx-8 sm-mx-4">
       <v-col class="" cols="6" v-for="item in desserts" :key="item.id">
-        <div class="content_blog pb-2">
+        <div style="height: 490px" class="content_blog pb-2">
           <img :src="`${item.image}`" class="w-100 img_blog ma-0" alt="" />
           <h4 class="ma-0 mx-4">{{ item.title }}</h4>
           <span class="mx-4">

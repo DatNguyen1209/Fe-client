@@ -102,7 +102,7 @@ const getData = async () => {
             @click="router.push('/hotel')"
             class="pa-3 bg-orange-lighten-2 text-white btn-see"
           >
-            See more
+            Xem thêm
           </button>
         </div>
       </v-container>

@@ -59,6 +59,10 @@ const login = async () => {
                 <div class="form-group w-100 mt-5">
                   <v-btn type="submit" class="w-100 pa-2"> Login </v-btn>
                 </div>
+                <div class="mt-4">
+                  <span class="rg_content">Đăng ký tài khoản </span>
+                  <a class="rg_link" href="/register">tại đây</a>
+                </div>
               </v-form>
             </div>
           </div>
@@ -82,5 +86,13 @@ const login = async () => {
 }
 ::placeholder {
   color: white;
+}
+.rg_content {
+  font-size: 20px;
+}
+.rg_link {
+  font-size: 20px;
+  color: #ee8a6a;
+  font-weight: 600;
 }
 </style>

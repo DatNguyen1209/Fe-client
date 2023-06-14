@@ -77,12 +77,7 @@ const orderEdit = async () => {
                 </span></v-col
               >
             </v-row>
-            <v-row>
-              <v-col cols="4">Bed type: </v-col>
-              <v-col cols="8"
-                ><span class="float-right">{{ desserts.bedType }} </span></v-col
-              >
-            </v-row>
+
             <v-row>
               <v-col cols="4">Capacity: </v-col>
               <v-col cols="8"

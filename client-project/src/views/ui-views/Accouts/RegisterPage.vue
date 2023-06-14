@@ -81,7 +81,7 @@ const register = async () => {
         </v-row>
         <v-row>
           <v-col cols="6">
-            <span>Số đt</span>
+            <span>Số điện thoại</span>
             <input
               class="w-100 input-login"
               type="text"

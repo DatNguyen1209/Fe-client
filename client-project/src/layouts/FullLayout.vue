@@ -16,9 +16,64 @@
         <RouterView />
         <v-footer class="bg-black">
           <v-container>
-            <v-row class="d-flex align-center justify-center">
-              <v-col cols="3" class="text-center">
+            <v-row class="d-flex">
+              <v-col cols="3">
                 <img src="../assets/images/logos/logo-dark.svg" alt="" />
+                <v-row class="d-flex mt-2">
+                  <v-col class="pa-0 mx-1">
+                    <v-icon class="icon-footer">mdi-facebook</v-icon>
+                  </v-col>
+                  <v-col class="pa-0 mx-1">
+                    <v-icon class="icon-footer">mdi-twitter</v-icon>
+                  </v-col>
+                  <v-col class="pa-0 mx-1">
+                    <v-icon class="icon-footer">mdi-instagram</v-icon>
+                  </v-col>
+                  <v-col class="pa-0 mx-1">
+                    <v-icon class="icon-footer">mdi-web</v-icon>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="3">
+                <h3 class="heading-footer">Truy cập nhanh</h3>
+                <v-row class="flex-column mt-2">
+                  <v-col class="item-link" cols="12">
+                    <a href="/hotel">Khách sạn</a>
+                  </v-col>
+                  <v-col class="item-link" cols="12">
+                    <a href="/blog">Bài viết</a>
+                  </v-col>
+                  <v-col class="item-link" cols="12">
+                    <a href="/contact">Liên hệ</a>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="3">
+                <h3>Liên hệ</h3>
+                <v-row class="flex-column mt-2">
+                  <v-col class="item-link" cols="12">
+                    <a href="/#">Tel:024 3557 7799</a>
+                  </v-col>
+                  <v-col class="item-link" cols="12">
+                    <a href="/dainam.edu.vn"> dainam.edu.vn</a>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="3">
+                <h3>Địa chỉ</h3>
+                <v-row class="flex-column mt-2">
+                  <v-col class="item-link" cols="12">
+                    <a href="/#">1 P. Xốm, Phú Lâm, Hà Đông, Hà Nội</a>
+                  </v-col>
+                  <v-col class="item-link po-re" cols="12">
+                    <input
+                      class="input-email"
+                      type="email"
+                      placeholder="Nhập email"
+                    />
+                    <v-icon class="po-ab">mdi-send</v-icon>
+                  </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-container>
@@ -33,4 +88,47 @@ import { RouterLink } from "vue-router";
 import NavigationMenu from "./NavigationMenu.vue";
 import LogInOut from "./Loginout/LogInOut.vue";
 </script>
-<style></style>
+<style>
+.icon-footer {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #949eb2;
+}
+.icon-footer:hover {
+  background-color: #f0987c;
+  color: white;
+}
+.heading-footer {
+  font-size: 20px;
+}
+.item-link {
+  padding: 4px 12px;
+}
+.item-link a {
+  text-decoration: none;
+  color: #868c98;
+  font-size: 16px;
+}
+.item-link a:hover {
+  color: #dca73a;
+  animation: transform 0.2s linear;
+
+  transform: translateX(6px);
+}
+.input-email {
+  outline: none;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: white;
+}
+.po-re {
+  position: relative;
+}
+.po-ab {
+  position: absolute;
+  top: 26%;
+  right: 6%;
+  color: #f0987c;
+}
+</style>
